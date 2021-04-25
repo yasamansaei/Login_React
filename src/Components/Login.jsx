@@ -1,8 +1,14 @@
 import React from 'react'
+import { useHistory } from 'react-router-dom';
 
 function Login() {
+    const history = useHistory();
+
+    const handleClick = () => {
+        history.push("/welcome");
+    }
     return (
-        <form>
+        <form onSubmit={handleClick}>
 
                 <h3>Log in</h3>
 
