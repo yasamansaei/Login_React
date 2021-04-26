@@ -1,26 +1,37 @@
-import React from 'react'
+import React,{ useState,useRef,useContext } from 'react'
 import { useHistory } from 'react-router-dom';
+import {UserContext} from '../App'
 
 function Login() {
-    const history = useHistory();
+    // const history = useHistory();
+    const context = useContext(UserContext)
+    // const handleClick = () => {
+    //     history.push("/welcome");
+    // }
 
-    const handleClick = () => {
-        history.push("/welcome");
+    const refEmail = useRef('');
+    const refPass = useRef('');
+    const handleSubmit=(e)=>
+    {
+        e.preventDefault();
+        context.dispatchUser({type:'Login',user:refEmail.current.value,passWord:refPass.current.value})
+
     }
     return (
         <>
-            < form onSubmit={handleClick} >
+            < form onSubmit={(e)=>handleSubmit(e)} >
 
                 <h3>Log in</h3>
+                <h4 className="text-danger text-center">{context.state.error} </h4>
 
                 <div className="form-group">
                     <label>Email</label>
-                    <input type="email" className="form-control" placeholder="Enter email" />
+                    <input type="text" className="form-control" ref={refEmail} placeholder="Enter email"/>
                 </div>
 
                 <div className="form-group">
                     <label>Password</label>
-                    <input type="password" className="form-control" placeholder="Enter password" />
+                    <input type="password" className="form-control" ref={refPass} placeholder="Enter password" />
                 </div>
 
                 <div className="form-group">
