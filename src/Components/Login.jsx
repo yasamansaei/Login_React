@@ -8,7 +8,8 @@ function Login() {
         history.push("/welcome");
     }
     return (
-        <form onSubmit={handleClick}>
+        <>
+            < form onSubmit={handleClick} >
 
                 <h3>Log in</h3>
 
@@ -33,7 +34,8 @@ function Login() {
                 <p className="forgot-password text-right">
                     Forgot <a href="#">password?</a>
                 </p>
-            </form>
+            </form >
+        </>
     )
 }
 
